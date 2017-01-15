@@ -1,0 +1,7 @@
+[default]
+name=Default
+device=local
+runtime=host
+config-opts=
+prefix=/home/retard/.cache/gnome-builder/install/test_project/host
+default=true
