@@ -1,10 +1,11 @@
 #[macro_use]
 extern crate glium;
+extern crate image;
 
-pub mod core;
+pub mod graphics;
 pub mod circle;
 pub mod shape;
-pub mod game;
+//pub mod game;
 
 #[cfg(test)]
 mod tests {

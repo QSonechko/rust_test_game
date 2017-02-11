@@ -5,6 +5,7 @@ extern crate image;
 
 //use test_project::circle::Circle;
 use test_project::shape::vertex::Vertex;
+
 use glium::Surface;
 use glium::DisplayBuild;
 use std::io::Cursor;
@@ -51,39 +52,10 @@ fn main() {
     let vertex_buffer = glium::VertexBuffer::new(&display, &shape).unwrap();
     let indicies = glium::index::NoIndices(glium::index::PrimitiveType::TriangleFan);
 
-    let vertex_shader_src = r#"
-        #version 140
-
-        in vec2 position;
-        in vec2 tex_coords;
-        out vec2 v_tex_coords;
-
-        uniform mat4 matrix;
-
-        void main() {
-            v_tex_coords = tex_coords;
-            gl_Position = matrix * vec4(position, 1.0, 1.0);
-        }
-    "#;
-
-    let fragment_shader_src = r#"
-        #version 140
-
-        out vec4 color;
-        in vec2 color_attr;
-        in vec2 v_tex_coords;
-
-        uniform sampler2D tex;
-
-        void main() {
-            color = texture(tex, v_tex_coords);
-        }
-    "#;
-
     let program = glium::Program::from_source(
         &display,
-        vertex_shader_src,
-        fragment_shader_src,
+        include_str!("shaders/circle.vs"),
+        include_str!("shaders/circle.frag"),
         None
     ).unwrap();
 

@@ -6,12 +6,37 @@ pub struct Player {
     health: i64,
 }
 
+enum PlayerCounstructorArgs {
+    Default,
+    WithPosition(Point),
+    WithHealth(i64),
+    WithPositionAndHealth(Point, i64)
+}
+
 impl Player {
-    pub fn new() -> Player {
-       Player {
-           position: Point::new(0f64, 0f64),
-           health: 0
-       }
+    pub fn new(args: PlayerCounstructorArgs) -> Player {
+        match args {
+            Default => 
+                return Player { 
+                    position: Point::new(0f64, 0f64),
+                    health: 100 
+                },
+            WithPosition(p) => 
+                return Player { 
+                    position: p,
+                    health: 100 
+                },
+            WithHealth(h) => 
+                return Player { 
+                    position: Point::new(0f64, 0f64),
+                    health: h 
+                },
+            WithPositionAndHealth(p, h) => 
+                return Player { 
+                    position: p,
+                    health: h 
+                }
+        }
     }
 }
 

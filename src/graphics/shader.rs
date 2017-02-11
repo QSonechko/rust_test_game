@@ -2,7 +2,9 @@ use std::io::prelude::*;
 use std::fs::File;
 
 pub struct ShaderContainer {
-    pub shaders: Vec<String>
+    // FIXME: This should probably be a HashMap of vectors of different types with keys like
+    // 'fragment_shader', 'vertex_shader' etc.
+    pub shaders: Vec<String>,
 }
 
 impl ShaderContainer {
