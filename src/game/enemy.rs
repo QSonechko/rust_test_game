@@ -6,38 +6,24 @@ pub struct Enemy {
     health: i64,
 }
 
-enum EnemyCounstructorArgs {
-    Default,
-    WithPosition(Point),
-    WithHealth(i64),
-    WithPositionAndHealth(Point, i64)
-}
-
-
 impl Enemy {
-    pub fn new(args: EnemyCounstructorArgs) -> Enemy {
-        match args {
-            Default => 
-                return Enemy { 
-                    position: Point::new(0f64, 0f64),
-                    health: 100 
-                },
-            WithPosition(p) => 
-                return Enemy { 
-                    position: p,
-                    health: 100 
-                },
-            WithHealth(h) => 
-                return Enemy { 
-                    position: Point::new(0f64, 0f64),
-                    health: h 
-                },
-            WithPositionAndHealth(p, h) => 
-                return Enemy { 
-                    position: p,
-                    health: h 
-                }
+    pub fn new(position: Point, health: i64) -> Enemy {
+        return Enemy { 
+            position: Point::new(0f64, 0f64),
+            health: 100i64,
         }
+    }
+
+    pub fn with_position(pos: Point) -> Enemy {
+        Enemy::new(pos, 100i64)
+    }
+
+    pub fn with_health(health: i64) -> Enemy {
+        Enemy::new(Point::new(0f64, 0f64), health)
+    }
+
+    pub fn default() -> Enemy {
+        Enemy::new(Point::new(0f64, 0f64), 100i64)
     }
 }
 

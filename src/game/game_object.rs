@@ -1,3 +1,4 @@
+use std::fmt;
 
 pub trait GameObject {
     fn set_position(&self, _: Point);
@@ -57,6 +58,12 @@ impl Point {
 
     pub fn get_y(&self) -> f64 {
         self.y
+    }
+}
+
+impl fmt::Display for Point {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "({}, {})", self.x, self.y)
     }
 }
 

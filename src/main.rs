@@ -5,6 +5,9 @@ extern crate image;
 
 //use test_project::circle::Circle;
 use test_project::shape::vertex::Vertex;
+use test_project::game::camera::Camera;
+use test_project::game::game_object::Point;
+use test_project::game::game_character::{PositionAware, Accelerateable};
 
 use glium::Surface;
 use glium::DisplayBuild;
@@ -38,6 +41,13 @@ fn main() {
         .with_title(format!("Helo world"))
         .build_glium()
         .unwrap();
+
+    let camera = Camera::default(&display);
+    println!("CAMERA POSITION: {}", camera.get_position());
+    let pos = camera.set_position(Point::new(1f64, 1f64))
+             .accelerate(Point::new(1f64, 0f64))
+             .get_position();
+    println!("NEW CAMERA POS: {}", pos);
 
     let image = image::load(Cursor::new(&include_bytes!("../images/doom.png")[..]),
                                         image::PNG).unwrap().to_rgba();
